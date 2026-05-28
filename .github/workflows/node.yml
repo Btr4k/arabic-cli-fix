@@ -42,16 +42,34 @@ jobs:
       - name: Run fix
         run: node ./bin/arabic-cli-fix.js fix
 
-      - name: Run init-ai (dry run in temp dir)
+      - name: Run init-ai (in temp dir)
         run: node ./bin/arabic-cli-fix.js init-ai --dir ./tmp-ci-test
 
-      - name: Run output (dry run in temp dir)
+      - name: Run init-ai --force (overwrite)
+        run: node ./bin/arabic-cli-fix.js init-ai --force --dir ./tmp-ci-test
+
+      - name: Run output (in temp dir)
         run: node ./bin/arabic-cli-fix.js output --dir ./tmp-ci-test
 
-      - name: Run unknown command (expect exit 1)
-        run: node ./bin/arabic-cli-fix.js notacommand; if [ $? -ne 1 ]; then exit 1; fi
-        if: runner.os != 'Windows'
+      - name: Verify unknown command exits non-zero
         shell: bash
+        run: |
+          set +e
+          node ./bin/arabic-cli-fix.js notacommand
+          code=$?
+          set -e
+          if [ "$code" -ne 1 ]; then
+            echo "Expected exit code 1, got $code"
+            exit 1
+          fi
+        if: runner.os != 'Windows'
 
-      - name: Run node tests
-        run: npm test
+      - name: Verify unknown command exits non-zero (Windows)
+        shell: pwsh
+        run: |
+          node ./bin/arabic-cli-fix.js notacommand
+          if ($LASTEXITCODE -ne 1) {
+            Write-Error "Expected exit code 1, got $LASTEXITCODE"
+            exit 1
+          }
+        if: runner.os == 'Windows'
