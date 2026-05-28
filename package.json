@@ -17,8 +17,7 @@
     "doctor": "node ./bin/arabic-cli-fix.js doctor",
     "test-arabic": "node ./bin/arabic-cli-fix.js test",
     "init-ai": "node ./bin/arabic-cli-fix.js init-ai",
-    "postinstall": "node scripts/postinstall.js",
-    "test": "node --test"
+"test": "node --test"
   },
   "keywords": [
     "arabic",
