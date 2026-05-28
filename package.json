@@ -1,0 +1,48 @@
+{
+  "name": "arabic-cli-fix",
+  "version": "0.2.0",
+  "description": "A cross-platform CLI helper to reduce Arabic encoding, font, and terminal display issues.",
+  "type": "module",
+  "bin": {
+    "arabic-cli-fix": "./bin/arabic-cli-fix.js",
+    "acf": "./bin/arabic-cli-fix.js"
+  },
+  "exports": {
+    "./doctor": "./lib/doctor.js",
+    "./templates": "./lib/templates.js",
+    "./cli": "./lib/cli.js"
+  },
+  "scripts": {
+    "start": "node ./bin/arabic-cli-fix.js",
+    "doctor": "node ./bin/arabic-cli-fix.js doctor",
+    "test-arabic": "node ./bin/arabic-cli-fix.js test",
+    "init-ai": "node ./bin/arabic-cli-fix.js init-ai",
+    "test": "node --test"
+  },
+  "keywords": [
+    "arabic",
+    "rtl",
+    "cli",
+    "terminal",
+    "unicode",
+    "utf-8",
+    "encoding",
+    "claude-code",
+    "gemini-cli",
+    "codex",
+    "windows-terminal"
+  ],
+  "author": "ABDULLAH ALANAZI",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "templates",
+    "scripts",
+    "README.md",
+    "LICENSE"
+  ]
+}
